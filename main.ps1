@@ -17,12 +17,10 @@ foreach ($obj in $jsonFragment) {
   }
 }
 
-foreach ($p in $profiles.keys) {  
-  Write-Output ${p}
-  Write-Output $($profiles.$p)
-  
-  mkdir "$targetSaveLocation\${p}"
-  Copy-Item "$pathChromeUserData\${p}\Bookmarks" "$targetSaveLocation\${p}"  
+foreach ($p in $profiles.keys) {    
+  $newDirName = "${p} ($($profiles.$p))"  
+  mkdir "$targetSaveLocation\$newDirName"
+  Copy-Item "$pathChromeUserData\${p}\Bookmarks" "$targetSaveLocation\$newDirName"  
 }
 
 
