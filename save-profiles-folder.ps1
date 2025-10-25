@@ -1,12 +1,8 @@
-# $sourceDir = 'C:\Users\Dan\AppData\Local\Google\Chrome\User Data'
-
-
-# TEST!!
-
 $sevenZipPath = 'C:\Program Files\7-Zip'
+$sourceDir    = 'C:\Users\Dan\AppData\Local\Google\Chrome\User Data\Default'
+$destZip      = 'C:\temp\save\chrome-userdata-backup.zip'
+$destLog      = 'C:\temp\save\chrome-userdata-backup-log.txt'
 
-$sourceDir = 'C:\Users\Dan\AppData\Local\Google\Chrome\User Data\Default'
-$destZip  = 'C:\temp\save\1.zip'
 
 $sevenZipExe = Join-Path $sevenZipPath '7z.exe'
 if (-not (Test-Path $sevenZipExe)) {
@@ -50,7 +46,7 @@ if (-not (Test-Path $destZip)) {
 }
 
 # run 7z and capture output
-$logFile = Join-Path $env:TEMP '7z_run_log.txt'
+$logFile = $destLog
 $output = & $sevenZipExe @args 2>&1
 $exit = $LASTEXITCODE
 $output | Out-File -FilePath $logFile -Encoding UTF8 -Force
